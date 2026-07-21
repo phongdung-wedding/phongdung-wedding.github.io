@@ -80,7 +80,7 @@ export const events = [
   {
     key: 'bride',
     side: 'Tiệc Nhà Gái',
-    rite: 'Lễ Nạp Tài',
+    rite: 'Lễ Vu Quy · Báo Hỷ',
     accent: 'rose', // 'rose' | 'gold'
     weekday: 'Chủ Nhật',
     date: '2026-08-02T11:00:00',
@@ -93,7 +93,7 @@ export const events = [
       'https://www.google.com/maps/search/?api=1&query=Tr%C3%A0ng%20An%20Palace%2C%20Hei%20Tower%2C%20Ng%E1%BB%A5y%20Nh%C6%B0%20Kon%20Tum%2C%20Thanh%20Xu%C3%A2n%2C%20H%C3%A0%20N%E1%BB%99i',
     schedule: [
       { time: '10:00', title: 'Đón Khách', text: 'Trà bánh và âm nhạc nhẹ nhàng đón quý khách.', icon: 'arrival' },
-      { time: '11:00', title: 'Lễ Nạp Tài', text: 'Nghi thức trao sính lễ và lời chúc phúc cho cô dâu.', icon: 'ceremony' },
+      { time: '11:00', title: 'Lễ Vu Quy', text: 'Nghi thức vu quy, cô dâu bái tạ gia tiên và ra mắt họ hàng hai bên.', icon: 'ceremony' },
       { time: '11:30', title: 'Khai Tiệc', text: 'Nâng ly mừng hạnh phúc đôi uyên ương.', icon: 'cocktail' },
       { time: '12:00', title: 'Dùng Bữa & Lời Chúc', text: 'Bữa tiệc thân mật cùng gia đình hai bên.', icon: 'dinner' },
     ],
@@ -101,7 +101,7 @@ export const events = [
   {
     key: 'groom',
     side: 'Tiệc Nhà Trai',
-    rite: 'Tiệc Báo Hỉ',
+    rite: 'Tiệc Báo Hỷ',
     accent: 'gold',
     weekday: 'Thứ Sáu',
     date: '2026-08-07T17:00:00',
@@ -114,7 +114,7 @@ export const events = [
       'https://maps.app.goo.gl/3aUFk8wZssK7rUwi6',
     schedule: [
       { time: '17:00', title: 'Đón Khách', text: 'Welcome drink và chụp ảnh lưu niệm.', icon: 'arrival' },
-      { time: '17:30', title: 'Nghi Thức Báo Hỉ', text: 'Chú rể cô dâu ra mắt, tri ân họ hàng và quan khách hai bên.', icon: 'ceremony' },
+      { time: '17:30', title: 'Nghi Thức Báo Hỷ', text: 'Chú rể cô dâu ra mắt, tri ân họ hàng và quan khách hai bên.', icon: 'ceremony' },
       { time: '18:00', title: 'Khai Tiệc', text: 'Cùng nâng ly chúc mừng cô dâu chú rể.', icon: 'cocktail' },
       { time: '18:30', title: 'Dùng Bữa & Tiệc Mừng', text: 'Bữa tiệc trọng thể và những lời chúc thân thương.', icon: 'party' },
       { time: '09:00', title: 'Lễ Tân Hôn · sáng 08/08', text: 'Sáng hôm sau, gia đình nhà trai cử hành lễ tân hôn, đón cô dâu về nhà chồng.', icon: 'arrival' },
@@ -148,7 +148,7 @@ export const gallery = {
     { src: photo('DAT_7813.jpg'), alt: 'Nghiêng đầu bên quạt lụa', span: 'tall' },
     { src: photo('DAT_7870.jpg'), alt: 'Sánh đôi trong trang phục truyền thống', span: 'tall' },
     { src: photo('DAT_7882.jpg'), alt: 'Ánh mắt trao nhau đầy thương mến', span: 'tall' },
-    { src: photo('DAT_7940.jpg'), alt: 'Nâng mâm quả — nghi thức nạp tài', span: 'tall' },
+    { src: photo('DAT_7940.jpg'), alt: 'Nâng mâm quả — nghi thức vu quy', span: 'tall' },
     { src: photo('DAT_7946.jpg'), alt: 'E ấp sau chiếc quạt', span: 'tall' },
     { src: photo('DAT_8069.jpg'), alt: 'Nụ cười bên chiếc nón lá', span: 'tall' },
     { src: photo('DAT_8175.jpg'), alt: 'Nụ hôn lên bàn tay cô dâu', span: 'tall' },
