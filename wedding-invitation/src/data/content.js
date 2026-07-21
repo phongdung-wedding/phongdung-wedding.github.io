@@ -21,7 +21,12 @@ export const couple = {
   // Ngày dùng cho đồng hồ đếm ngược + màn mở đầu (lấy buổi tiệc diễn ra trước).
   date: '2026-08-02T11:00:00',
   dateShort: '02 · 08 · 2026',
-  datesShort: '02 & 07 · 08 · 2026',
+  datesShort: '02 & 08 · 08 · 2026',
+  // Hai mốc lễ hiển thị ở màn mở đầu (animation intro).
+  introEvents: [
+    { rite: 'Lễ Nạp Tài', date: '02 · 08' },
+    { rite: 'Lễ Thành Hôn', date: '08 · 08' },
+  ],
   year: '2026',
   city: 'Hà Nội & Thanh Hóa',
   tagline: 'Hai câu chuyện, hòa làm một.',
@@ -80,7 +85,7 @@ export const events = [
   {
     key: 'bride',
     side: 'Tiệc Nhà Gái',
-    rite: 'Lễ Vu Quy · Báo Hỷ',
+    rite: 'Lễ Nạp Tài · Báo Hỷ',
     accent: 'rose', // 'rose' | 'gold'
     weekday: 'Chủ Nhật',
     date: '2026-08-02T11:00:00',
@@ -93,7 +98,7 @@ export const events = [
       'https://www.google.com/maps/search/?api=1&query=Tr%C3%A0ng%20An%20Palace%2C%20Hei%20Tower%2C%20Ng%E1%BB%A5y%20Nh%C6%B0%20Kon%20Tum%2C%20Thanh%20Xu%C3%A2n%2C%20H%C3%A0%20N%E1%BB%99i',
     schedule: [
       { time: '10:00', title: 'Đón Khách', text: 'Trà bánh và âm nhạc nhẹ nhàng đón quý khách.', icon: 'arrival' },
-      { time: '11:00', title: 'Lễ Vu Quy', text: 'Nghi thức vu quy, cô dâu bái tạ gia tiên và ra mắt họ hàng hai bên.', icon: 'ceremony' },
+      { time: '11:00', title: 'Lễ Nạp Tài', text: 'Nghi thức nạp tài, cô dâu bái tạ gia tiên và ra mắt họ hàng hai bên.', icon: 'ceremony' },
       { time: '11:30', title: 'Khai Tiệc', text: 'Nâng ly mừng hạnh phúc đôi uyên ương.', icon: 'cocktail' },
       { time: '12:00', title: 'Dùng Bữa & Lời Chúc', text: 'Bữa tiệc thân mật cùng gia đình hai bên.', icon: 'dinner' },
     ],
@@ -101,7 +106,7 @@ export const events = [
   {
     key: 'groom',
     side: 'Tiệc Nhà Trai',
-    rite: 'Tiệc Báo Hỷ',
+    rite: 'Lễ Thành Hôn · Báo Hỷ',
     accent: 'gold',
     weekday: 'Thứ Sáu',
     date: '2026-08-07T17:00:00',
@@ -117,7 +122,7 @@ export const events = [
       { time: '17:30', title: 'Nghi Thức Báo Hỷ', text: 'Chú rể cô dâu ra mắt, tri ân họ hàng và quan khách hai bên.', icon: 'ceremony' },
       { time: '18:00', title: 'Khai Tiệc', text: 'Cùng nâng ly chúc mừng cô dâu chú rể.', icon: 'cocktail' },
       { time: '18:30', title: 'Dùng Bữa & Tiệc Mừng', text: 'Bữa tiệc trọng thể và những lời chúc thân thương.', icon: 'party' },
-      { time: '09:00', title: 'Lễ Tân Hôn · sáng 08/08', text: 'Sáng hôm sau, gia đình nhà trai cử hành lễ tân hôn, đón cô dâu về nhà chồng.', icon: 'arrival' },
+      { time: '09:00', title: 'Lễ Thành Hôn · sáng 08/08', text: 'Sáng hôm sau, gia đình nhà trai cử hành lễ thành hôn, đón cô dâu về nhà chồng.', icon: 'arrival' },
     ],
   },
 ]
@@ -215,7 +220,7 @@ export const wishes = {
 export const footer = {
   message: 'Chúng mình rất mong được cùng bạn chung vui trong ngày trọng đại.',
   names: 'Quang Phong & Thùy Dung',
-  date: '02 & 07 · 08 · 2026',
+  date: '02 & 08 · 08 · 2026',
   credit: 'Thực hiện với tình yêu',
 }
 

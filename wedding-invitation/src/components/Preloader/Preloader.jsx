@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import Stars from './Stars'
 import GoldDust from './GoldDust'
@@ -107,36 +107,62 @@ export default function Preloader({ onComplete }) {
         transition={{ duration: 0.9, ease: EASE }}
         style={{ pointerEvents: reached('envelope') ? 'none' : 'auto' }}
       >
-        {/* handwritten date */}
-        <div className="relative h-14 overflow-hidden sm:h-20">
-          <motion.span
-            className="block font-vibes text-5xl text-champagne sm:text-7xl"
-            style={{ textShadow: '0 0 26px rgba(197,160,92,0.5)' }}
-            initial={{ clipPath: 'inset(0 100% 0 0)' }}
-            animate={reached('date') ? { clipPath: 'inset(0 0% 0 0)' } : { clipPath: 'inset(0 100% 0 0)' }}
-            transition={{ duration: 1.5, ease: EASE }}
-          >
-            {couple.dateShort}
-          </motion.span>
+        {/* two ceremonies — Lễ Nạp Tài & Lễ Thành Hôn */}
+        <div className="flex items-center justify-center gap-7 sm:gap-12">
+          {couple.introEvents.map((ev, i) => (
+            <Fragment key={ev.rite}>
+              {i > 0 && (
+                <motion.span
+                  className="h-16 w-px bg-gradient-to-b from-transparent via-gold to-transparent sm:h-24"
+                  initial={{ scaleY: 0 }}
+                  animate={{ scaleY: reached('date') ? 1 : 0 }}
+                  transition={{ duration: 0.9, ease: EASE, delay: 0.55 }}
+                />
+              )}
+              <div className="flex flex-col items-center">
+                <motion.span
+                  className="mb-2 font-sans text-[0.55rem] uppercase tracking-[0.35em] text-champagne/75 sm:text-[0.65rem]"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={reached('date') ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+                  transition={{ duration: 0.9, ease: EASE, delay: 0.35 + i * 0.3 }}
+                >
+                  {ev.rite}
+                </motion.span>
+                <div className="relative h-12 overflow-hidden sm:h-16">
+                  <motion.span
+                    className="block font-vibes text-4xl text-champagne sm:text-6xl"
+                    style={{ textShadow: '0 0 26px rgba(197,160,92,0.5)' }}
+                    initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                    animate={reached('date') ? { clipPath: 'inset(0 0% 0 0)' } : { clipPath: 'inset(0 100% 0 0)' }}
+                    transition={{ duration: 1.3, ease: EASE, delay: 0.15 + i * 0.3 }}
+                  >
+                    {ev.date}
+                  </motion.span>
+                </div>
+              </div>
+            </Fragment>
+          ))}
         </div>
+
+        {/* divider + year */}
         <motion.div
-          className="mt-2 h-px bg-gradient-to-r from-transparent via-gold to-transparent"
-          initial={{ scaleX: 0, width: 180 }}
+          className="mt-5 h-px bg-gradient-to-r from-transparent via-gold to-transparent"
+          initial={{ scaleX: 0, width: 200 }}
           animate={{ scaleX: reached('date') ? 1 : 0 }}
-          transition={{ duration: 1, ease: EASE, delay: 0.7 }}
+          transition={{ duration: 1, ease: EASE, delay: 0.9 }}
         />
+        <motion.span
+          className="mt-3 font-sans text-[0.6rem] uppercase tracking-[0.5em] text-champagne/70"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: reached('date') ? 1 : 0 }}
+          transition={{ duration: 1, ease: EASE, delay: 1 }}
+        >
+          {couple.year}
+        </motion.span>
 
         {/* names */}
-        <motion.span
-          className="mt-9 font-sans text-[0.6rem] uppercase tracking-[0.5em] text-champagne/70"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: reached('names') ? 1 : 0 }}
-          transition={{ duration: 1, ease: EASE }}
-        >
-          Lễ Thành Hôn
-        </motion.span>
         <motion.h1
-          className="mt-3 font-display text-5xl text-ivory sm:text-7xl"
+          className="mt-8 font-display text-5xl text-ivory sm:text-7xl"
           initial={{ opacity: 0, y: 26 }}
           animate={reached('names') ? { opacity: 1, y: 0 } : { opacity: 0, y: 26 }}
           transition={{ duration: 1.2, ease: EASE, delay: 0.15 }}

@@ -19,7 +19,7 @@ function EventCard({ event, index }) {
     >
       {/* header */}
       <span className="eyebrow eyebrow--onCard">{event.side}</span>
-      <h3 className={`mt-2 font-script text-4xl font-semibold ${accent}`}>{event.rite}</h3>
+      <h3 className={`mt-2 font-display text-4xl font-bold ${accent}`}>{event.rite}</h3>
 
       <div className={`my-7 h-px w-24 bg-gradient-to-r from-transparent to-transparent ${rule}`} />
 

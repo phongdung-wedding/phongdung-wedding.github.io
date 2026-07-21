@@ -52,7 +52,7 @@ function ScheduleColumn({ event, index }) {
         <span className="font-sans text-xs uppercase tracking-[0.4em] text-champagne/80">
           {event.side}
         </span>
-        <h3 className={`mt-2 font-script text-3xl font-semibold ${accent}`}>{event.rite}</h3>
+        <h3 className={`mt-2 font-display text-3xl font-bold ${accent}`}>{event.rite}</h3>
         <p className="mt-2 font-serif text-lg text-ivory/70">
           {event.weekday} · {event.dateShort}
         </p>
