@@ -22,7 +22,7 @@ export default function QRCard({ data, index = 0 }) {
         <img
           src={data.image}
           alt={`Mã QR ${data.side}`}
-          className="mt-5 w-56 max-w-full rounded-2xl shadow-glass"
+          className="mt-5 h-56 w-56 max-w-full rounded-2xl bg-white object-contain shadow-glass"
           loading="lazy"
         />
       ) : (

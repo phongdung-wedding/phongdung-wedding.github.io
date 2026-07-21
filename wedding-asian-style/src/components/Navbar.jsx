@@ -63,8 +63,8 @@ export default function Navbar({ scrollTo, show }) {
             <DoubleHappiness gold className="text-3xl sm:text-4xl" />
           </button>
 
-          {/* desktop links */}
-          <ul className="hidden items-center gap-8 lg:flex">
+          {/* desktop links — pr reserves the top-right corner for the music toggle */}
+          <ul className="hidden items-center gap-8 lg:flex lg:pr-40 2xl:pr-0">
             {nav.map((item) => (
               <li key={item.id}>
                 <button
