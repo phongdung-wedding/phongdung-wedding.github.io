@@ -193,10 +193,10 @@ export const gifts = {
     {
       side: 'Nhà Gái',
       name: 'Nguyễn Thùy Dung',
-      bank: 'Vietcombank',
-      account: '1023882766',
+      bank: 'MB Bank',
+      account: '0858092046',
       value:
-        '00020101021138540010A00000072701240006970436011010238827660208QRIBFTTA5204000053037045802VN62230819Mung cuoi Thuy Dung63044D7B',
+        '00020101021138540010A00000072701240006970422011008580920460208QRIBFTTA5204000053037045802VN62230819Mung cuoi Thuy Dung6304B91C',
       image: photo('qr-codau.jpeg'),
     },
   ],
