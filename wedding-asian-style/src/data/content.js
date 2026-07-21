@@ -101,7 +101,7 @@ export const events = [
   {
     key: 'groom',
     side: 'Tiệc Nhà Trai',
-    rite: 'Lễ Tân Hôn',
+    rite: 'Tiệc Báo Hỉ',
     accent: 'gold',
     weekday: 'Thứ Sáu',
     date: '2026-08-07T17:00:00',
@@ -114,10 +114,10 @@ export const events = [
       'https://maps.app.goo.gl/3aUFk8wZssK7rUwi6',
     schedule: [
       { time: '17:00', title: 'Đón Khách', text: 'Welcome drink và chụp ảnh lưu niệm.', icon: 'arrival' },
-      { time: '17:30', title: 'Lễ Tân Hôn', text: 'Nghi thức thành hôn trước họ hàng đôi bên.', icon: 'ceremony' },
+      { time: '17:30', title: 'Nghi Thức Báo Hỉ', text: 'Chú rể cô dâu ra mắt, tri ân họ hàng và quan khách hai bên.', icon: 'ceremony' },
       { time: '18:00', title: 'Khai Tiệc', text: 'Cùng nâng ly chúc mừng cô dâu chú rể.', icon: 'cocktail' },
       { time: '18:30', title: 'Dùng Bữa & Tiệc Mừng', text: 'Bữa tiệc trọng thể và những lời chúc thân thương.', icon: 'party' },
-      { time: '09:00', title: 'Lễ Đón Dâu · sáng 08/08', text: 'Sáng hôm sau, gia đình nhà trai làm lễ đón dâu tại tư gia.', icon: 'arrival' },
+      { time: '09:00', title: 'Lễ Tân Hôn · sáng 08/08', text: 'Sáng hôm sau, gia đình nhà trai cử hành lễ tân hôn, đón cô dâu về nhà chồng.', icon: 'arrival' },
     ],
   },
 ]
