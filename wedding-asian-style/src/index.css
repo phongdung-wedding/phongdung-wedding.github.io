@@ -1,0 +1,286 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --ivory: #fbf3e6; /* warm cream — used for light text & cream cards */
+  --cream: #f6e7ce;
+  --champagne: #f0d9a8;
+  --gold: #c9a24b;
+  --gold-deep: #9c7a2c;
+  --gold-bright: #e7c766;
+  --rose-gold: #b0182b;
+  --soft-pink: #e8a9a2;
+  --beige: #e9d6c2;
+  --charcoal: #3a1410; /* warm dark — text on the cream cards */
+  --ink: #2a0c0a;
+  --lacquer: #c8102e;
+  --lacquer-deep: #8e0e22;
+  --red-bg: #6e0d14; /* dominant page red */
+  --red-bg-deep: #4a0810;
+  --red-panel: #7e1019;
+
+  --grain-opacity: 0.06;
+  --page-radius: 0px;
+
+  color-scheme: dark;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scrolling */
+  -webkit-text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  /* Deep red is the dominant field; a faint gold brocade lattice + warm glows
+     give it an oriental, lacquered feel. */
+  background-color: var(--red-bg);
+  background-image:
+    radial-gradient(120% 80% at 50% -10%, rgba(160, 22, 36, 0.7), transparent 60%),
+    radial-gradient(70rem 70rem at 88% -8%, rgba(214, 35, 54, 0.35), transparent 60%),
+    radial-gradient(60rem 60rem at -8% 14%, rgba(201, 162, 75, 0.14), transparent 55%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Cg fill='none' stroke='%23E7C766' stroke-width='0.7' opacity='0.5'%3E%3Cpath d='M0 30 L30 0'/%3E%3Cpath d='M0 0 L30 30'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed, fixed, fixed, fixed;
+  background-size: auto, auto, auto, 30px 30px;
+  color: var(--ivory);
+  font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(231, 199, 102, 0.3);
+  color: var(--ink);
+}
+
+/* Custom scrollbar (visible on non-Lenis fallback) */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--lacquer), var(--gold-deep));
+  border-radius: 999px;
+}
+
+/* ============================================================
+   TYPOGRAPHY HELPERS
+   ============================================================ */
+@layer components {
+  .eyebrow {
+    @apply font-sans uppercase text-[0.7rem] sm:text-xs font-medium;
+    letter-spacing: 0.42em;
+    color: var(--gold-bright); /* gold reads on the red field */
+  }
+  /* For the few eyebrows that sit on a cream card, use deep red instead. */
+  .eyebrow--onCard {
+    color: var(--lacquer);
+  }
+
+  /* 囍 Song Hỷ — the double-happiness mark. Full CJK fallback stack so a real
+     glyph shows even before the Noto Serif SC subset loads / if it fails. */
+  .hy {
+    font-family: 'Noto Serif SC', 'Microsoft YaHei', 'PingFang SC',
+      'Hiragino Sans GB', 'Noto Sans CJK SC', serif;
+    font-weight: 900;
+    color: var(--lacquer);
+    line-height: 1;
+    display: inline-block;
+  }
+  .hy-gold {
+    font-family: 'Noto Serif SC', 'Microsoft YaHei', 'PingFang SC',
+      'Hiragino Sans GB', 'Noto Sans CJK SC', serif;
+    font-weight: 900;
+    line-height: 1;
+    display: inline-block;
+    background: linear-gradient(100deg, #9c7a2c 0%, #f0d9a8 40%, #c9a24b 60%, #9c7a2c 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  /* Fallback: if background-clip:text is unsupported, render solid gold
+     instead of an invisible (transparent) glyph. */
+  @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+    .hy-gold {
+      background: none;
+      color: var(--gold);
+      -webkit-text-fill-color: currentColor;
+    }
+  }
+
+  .display-fluid {
+    font-family: 'Charm', 'Noto Serif', serif;
+    line-height: 0.98;
+    font-size: clamp(3rem, 11vw, 9.5rem);
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  .section-title {
+    font-family: 'Charm', 'Noto Serif', serif;
+    font-weight: 700;
+    line-height: 1.06;
+    font-size: clamp(2.2rem, 6vw, 4.7rem);
+    letter-spacing: 0;
+    color: var(--champagne);
+  }
+
+  .lede {
+    font-family: 'Noto Serif', serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    line-height: 1.6;
+    font-weight: 400;
+    color: rgba(251, 243, 230, 0.82); /* cream, readable on red */
+  }
+
+  /* Cream "rice-paper" card sitting on the red field. */
+  .ink-panel {
+    background: linear-gradient(160deg, #fdf6ea, #f4e6cd);
+    border: 1px solid rgba(156, 122, 44, 0.4);
+    box-shadow: 0 24px 60px -28px rgba(40, 6, 6, 0.7);
+  }
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+@layer utilities {
+  .text-gold-gradient {
+    background: linear-gradient(100deg, #a47e3b 0%, #e7d2ae 38%, #c5a05c 62%, #a47e3b 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .text-gold-shimmer {
+    background: linear-gradient(100deg, #a47e3b 0%, #f2e3c5 30%, #c5a05c 50%, #f2e3c5 70%, #a47e3b 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: shimmer 5s linear infinite;
+  }
+
+  /* On the red field, "glass" reads as a warm cream rice-paper panel so the
+     dark card text stays readable. */
+  .glass {
+    background: linear-gradient(160deg, rgba(253, 246, 234, 0.96), rgba(244, 230, 205, 0.92));
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    border: 1px solid rgba(156, 122, 44, 0.45);
+  }
+
+  .glass-dark {
+    background: linear-gradient(
+      135deg,
+      rgba(74, 8, 16, 0.62),
+      rgba(40, 6, 6, 0.42)
+    );
+    backdrop-filter: blur(18px) saturate(120%);
+    -webkit-backdrop-filter: blur(18px) saturate(120%);
+    border: 1px solid rgba(231, 199, 102, 0.3);
+  }
+
+  .hairline {
+    border: 1px solid rgba(201, 162, 75, 0.3);
+  }
+
+  .gold-rule {
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    height: 1px;
+  }
+
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    z-index: 60;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px;
+    mix-blend-mode: multiply;
+  }
+
+  .mask-fade-y {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  }
+
+  .perspective {
+    perspective: 1600px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Hide native cursor only on devices that have a precise pointer */
+  @media (pointer: fine) {
+    .cursor-none-fine,
+    .cursor-none-fine * {
+      cursor: none !important;
+    }
+  }
+}
+
+/* Reveal helper for line-by-line text masking */
+.reveal-line {
+  display: block;
+  overflow: hidden;
+}
+
+/* Reduced motion: keep things calm and accessible */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

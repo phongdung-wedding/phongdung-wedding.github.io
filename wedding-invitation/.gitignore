@@ -1,0 +1,16 @@
+node_modules
+dist
+dist-ssr
+
+# Full-res wedding originals (kept locally for re-cropping; web versions live in public/photos/)
+photos-src
+*.local
+.env
+.env.*
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
