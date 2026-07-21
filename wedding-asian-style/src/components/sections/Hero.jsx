@@ -40,7 +40,7 @@ export default function Hero({ reveal, onCta }) {
         <motion.img
           src={hero.image}
           alt={hero.imageAlt}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-[50%_15%]"
           initial={{ scale: 1.3, opacity: 0 }}
           animate={reveal ? { scale: 1, opacity: 1 } : {}}
           transition={{ duration: 2.6, ease: EASE }}
