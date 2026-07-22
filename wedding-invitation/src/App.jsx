@@ -23,7 +23,7 @@ import { useAmbientAudio } from './hooks/useAmbientAudio'
 export default function App() {
   const [loaded, setLoaded] = useState(false)
   const lenisRef = useLenis(loaded)
-  const { playing, toggle } = useAmbientAudio({ src: 'music/one-life.mp3', volume: 0.6 })
+  const { playing, toggle } = useAmbientAudio({ src: 'music/one-life.mp3', volume: 0.6, autoplay: true })
 
   // Keep the page pinned to the top while the intro plays.
   useEffect(() => {

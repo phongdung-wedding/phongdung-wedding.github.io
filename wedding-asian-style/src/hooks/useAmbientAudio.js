@@ -3,22 +3,30 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 /**
  * Plays a looping background song (a real audio file) behind the page.
  *
- * Crucially it NEVER autoplays — the <audio> element is only created and
- * started on the first user gesture (the music toggle), which keeps browser
- * autoplay policies happy. Returns { playing, toggle } with smooth volume
- * fades in / out. Pausing keeps the playback position, so toggling back on
- * resumes where the track left off.
+ * Returns { playing, toggle } with smooth volume fades in / out. Pausing keeps
+ * the playback position, so toggling back on resumes where the track left off.
+ *
+ * Autoplay: browsers block audio-with-sound until the guest interacts with the
+ * page, so true "load and play" is not allowed. With `autoplay: true` the hook
+ * (1) optimistically tries to play right away — which succeeds on browsers that
+ * grant it — and (2) if that is blocked, arms a one-shot listener that starts
+ * the music on the guest's very first gesture anywhere (a click, tap, key press
+ * or scroll — e.g. opening the envelope or hitting "Bỏ qua"). Once the guest
+ * pauses the music by hand, we never force it back on.
  *
  * The track lives in each site's /public folder and is served from the site's
  * base URL — e.g. https://…/wedding/music/one-life.mp3
  */
-export function useAmbientAudio({ src = 'music/one-life.mp3', volume = 0.6 } = {}) {
+export function useAmbientAudio({ src = 'music/one-life.mp3', volume = 0.6, autoplay = false } = {}) {
   const [playing, setPlaying] = useState(false)
   const audioRef = useRef(null)
   const rafRef = useRef(0)
+  // Set once the guest takes manual control of the toggle, so autoplay never
+  // fights a deliberate pause.
+  const userControlledRef = useRef(false)
 
   // Lazily create the <audio> element on first use so nothing loads or plays
-  // before the guest actually asks for music.
+  // before it is actually needed.
   const ensureAudio = useCallback(() => {
     if (audioRef.current) return audioRef.current
     const base = import.meta.env.BASE_URL || '/'
@@ -51,23 +59,56 @@ export function useAmbientAudio({ src = 'music/one-life.mp3', volume = 0.6 } = {
     rafRef.current = requestAnimationFrame(step)
   }, [])
 
-  const toggle = useCallback(async () => {
+  // Begin (or resume) playback with a fade-in. Resolves to true if the browser
+  // allowed it, false if autoplay was blocked or the file is unavailable.
+  const start = useCallback(async () => {
     const el = ensureAudio()
-    if (!playing) {
-      try {
-        await el.play()
-        setPlaying(true)
-        fadeTo(volume, 2200)
-      } catch {
-        // Autoplay blocked, or the file is missing / not yet uploaded —
-        // stay paused rather than throwing.
-        setPlaying(false)
-      }
-    } else {
+    try {
+      await el.play()
+      setPlaying(true)
+      fadeTo(volume, 2200)
+      return true
+    } catch {
       setPlaying(false)
-      fadeTo(0, 1400)
+      return false
     }
-  }, [ensureAudio, fadeTo, playing, volume])
+  }, [ensureAudio, fadeTo, volume])
+
+  const stop = useCallback(() => {
+    setPlaying(false)
+    fadeTo(0, 1400)
+  }, [fadeTo])
+
+  const toggle = useCallback(() => {
+    userControlledRef.current = true
+    if (playing) stop()
+    else start()
+  }, [playing, start, stop])
+
+  // Autoplay: try now, and otherwise wait for the first user gesture.
+  useEffect(() => {
+    if (!autoplay) return
+    let cancelled = false
+
+    const events = ['pointerdown', 'keydown', 'touchstart', 'wheel']
+    const arm = () => events.forEach((e) => window.addEventListener(e, onGesture, { passive: true }))
+    const disarm = () => events.forEach((e) => window.removeEventListener(e, onGesture))
+
+    function onGesture() {
+      disarm()
+      if (!cancelled && !userControlledRef.current) start()
+    }
+
+    start().then((ok) => {
+      if (cancelled || ok || userControlledRef.current) return
+      arm()
+    })
+
+    return () => {
+      cancelled = true
+      disarm()
+    }
+  }, [autoplay, start])
 
   useEffect(() => {
     return () => {
