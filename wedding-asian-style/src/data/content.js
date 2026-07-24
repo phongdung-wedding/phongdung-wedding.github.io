@@ -97,7 +97,7 @@ export const events = [
     mapHref:
       'https://www.google.com/maps/search/?api=1&query=Tr%C3%A0ng%20An%20Palace%2C%20Hei%20Tower%2C%20Ng%E1%BB%A5y%20Nh%C6%B0%20Kon%20Tum%2C%20Thanh%20Xu%C3%A2n%2C%20H%C3%A0%20N%E1%BB%99i',
     schedule: [
-      { time: '10:00', title: 'Đón Khách', text: 'Trà bánh và âm nhạc nhẹ nhàng đón quý khách.', icon: 'arrival' },
+      { time: '10:30', title: 'Đón Khách', text: 'Trà bánh và âm nhạc nhẹ nhàng đón quý khách.', icon: 'arrival' },
       { time: '11:00', title: 'Lễ Nạp Tài', text: 'Nghi thức nạp tài, cô dâu bái tạ gia tiên và ra mắt họ hàng hai bên.', icon: 'ceremony' },
       { time: '11:30', title: 'Khai Tiệc', text: 'Nâng ly mừng hạnh phúc đôi uyên ương.', icon: 'cocktail' },
       { time: '12:00', title: 'Dùng Bữa & Lời Chúc', text: 'Bữa tiệc thân mật cùng gia đình hai bên.', icon: 'dinner' },
